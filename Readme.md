@@ -1,4 +1,5 @@
-﻿# GacUI CMake support
+ # 本仓库拷贝自[mangosroom：GacUI-CMake-support]([https://github.com/vczh-libraries/Release](https://github.com/mangosroom/GacUI-CMake-support)库
+ # GacUI CMake support
 ![compile status](https://github.com/mangosroom/GacUI-CMake-support/actions/workflows/build_on_windows.yml/badge.svg)
 
 本项目旨在提供[GacUI](https://github.com/vczh-libraries/Release)库的CMake支持,使用CMake构建GacUI项目并打包安装，支持CMake通用格式导入连接到自己项目中。
