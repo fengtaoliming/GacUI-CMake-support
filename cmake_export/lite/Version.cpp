@@ -12,8 +12,8 @@
 
 namespace vl
 {
-    const std::string gac_git_branch = "master";
-    const std::string gac_git_hash = "cedfc03";
+    const std::string gac_git_branch = "";
+    const std::string gac_git_hash = "";
     const std::string gac_version_major = "1";
     const std::string gac_version_minor = "1";
     const std::string gac_version_patch = "3";
