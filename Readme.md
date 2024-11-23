@@ -1,4 +1,4 @@
- # 本仓库拷贝自[mangosroom：GacUI-CMake-support]([https://github.com/vczh-libraries/Release](https://github.com/mangosroom/GacUI-CMake-support)库
+ # 本仓库拷贝自[mangosroom：GacUI-CMake-support]([https://github.com/mangosroom/GacUI-CMake-support])
  # GacUI CMake support
 ![compile status](https://github.com/mangosroom/GacUI-CMake-support/actions/workflows/build_on_windows.yml/badge.svg)
 
