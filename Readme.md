@@ -1,9 +1,7 @@
 
 # GacUI CMake support
-# 本仓库拷贝自[mangosroom/GacUI-CMake-support]([https://github.com/mangosroom/GacUI-CMake-support])
 
-
-
+本仓库拷贝自[mangosroom/GacUI-CMake-support]([https://github.com/mangosroom/GacUI-CMake-support])
 
 本项目旨在提供[GacUI](https://github.com/vczh-libraries/Release)库的CMake支持,使用CMake构建GacUI项目并打包安装，支持CMake通用格式导入连接到自己项目中。
 使用GacUI之前，请先阅读GacUI原许可[GacUI-License](https://github.com/vczh-libraries/Release/blob/master/LICENSE.md)
@@ -18,12 +16,12 @@
 
 # 如何编译GacUI
 
-**注意:最新版本(>=1.0.3.0)需要编译器支持C++20标准**
+**注意:GacUI版本(>=1.0.3.0)需要编译器支持C++20标准**
 
 1. 克隆项目，注意要递归下载GacUI源码
 
 ```bash
-git clone --recursive git@github.com:mangosroom/GacUI-CMake-support.git
+git clone --recursive git@github.com:fengtaoliming/GacUI-CMake-support.git
 ```
 
 2. CMake生成Visual Studio解决方案
@@ -124,29 +122,54 @@ target_link_libraries(${PROJECT_NAME} GacUILite)
 
 2. 示例2(包含xml资源)
 
-```cmake
-project(helloworlds_xml)
+├─.vscode
+├─build
 
+├─install
+│  ├─include
+│  │  └─Skins
+│  │      └─DarkSkin
+│  ├─lib
+│  │  └─cmake
+│  │      └─GacUI
+│  └─Tools
+│ 
+├─src
+│  ├─GacUI.xml.log
+│  └─UI
+│      └─Source
+└─UIRes
+
+```
+.\install\Tools\GacBuild.ps1 .\src\GacUI.xml
+.\install\Tools\GacClear.ps1 .\src\GacUI.xml
+```
+
+
+
+```cmake
+cmake_minimum_required(VERSION 3.14)
+project(helloworlds_xml)
+# C++标准要求
+set(CMAKE_CXX_STANDARD 20)
 if(WIN32)
     # 设置unicode编码
     add_definitions(-DUNICODE -D_UNICODE)
 endif()
 # 不需要反射
 add_definitions(-DVCZH_DEBUG_NO_REFLECTION -DVCZH_DEBUG_NO_REFLECTION)
-
-# xml生成cpp头文件所在目录
-include_directories(./xml/source)
-
-# xml生成cpp文件
-file(GLOB_RECURSE UI_SOURCE "xml/source/*.cpp")
-
-
-# 1. 设置GacUI_DIR 为GacUIConfig.cmake文件所在目录
 set(GacUI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../install/lib/cmake/GacUI)
 # 2. 查找GacUI
 find_package(GacUI REQUIRED)
+# xml生成cpp头文件所在目录
+include_directories(./UI/Source)
+# xml生成cpp文件 
+file(GLOB_RECURSE UI_SOURCE "UI/Source/*.cpp" )
 
-add_executable(${PROJECT_NAME} WIN32 "main.cpp" ${UI_SOURCE})
+# 1. 设置GacUI_DIR 为GacUIConfig.cmake文件所在目录
+
+
+add_executable(${PROJECT_NAME} WIN32 "main.cpp" ${UI_SOURCE} )
 # 3. 链接GacUI依赖
 target_link_libraries(${PROJECT_NAME} GacUILite)
 ```
